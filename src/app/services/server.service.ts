@@ -7,6 +7,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ServerService {
+  
+  private url = 'http://localhost:8000/api/images';
 
   constructor(private http: HttpClient) { }
+
+  getImages(){
+    return this.http.get(this.url);
+  }
 }
