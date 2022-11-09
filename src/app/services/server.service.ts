@@ -19,13 +19,13 @@ export class ServerService {
     return this.http.get(this.get_images_url);
   }
 
-  saveImage(data: String){
-    console.log('in post' + data);
+  saveImage(path: string, description: string){
+    console.log('in post' + path);
     // console.log(localStorage.getItem(''));
     var headers = new Headers();
     headers.append('X-CSRF-TOKEN', this._token);
     // let options = new RequestOptions({ headers: headers, withCredentials: true });
-    return this.http.post(this.post_image_url, { headers: headers, withCredentials: true })
+    return this.http.post(this.post_image_url, { path: path, description: description })
       .subscribe(
         response => {
           // console.log(response);

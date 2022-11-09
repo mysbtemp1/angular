@@ -7,7 +7,22 @@
   </div>
 
   <div class="w3-container">
+    <label>Path :</label>
+    <br/>
     <input [(ngModel)] = "new_image_path"
-    (keyup.enter)="test()"  
-    type="text" class="form-control">
+    type="text" class="form-control" style="margin-bottom: 25px;">
+    <br/>
+    <label>Description :</label>
+    <br/>
+    <input [(ngModel)] = "new_image_description"
+    type="text" class="form-control" style="margin-bottom: 25px;">
+    <br/>
+    <button (click)="test()" class="form-control" style="margin-bottom: 25px;">
+      Add New Image</button>
+    <br/>
+
+    <ul>
+      <!-- <li *ngFor="let image of images_array">{{image.description}}</li> -->
+    </ul>
+
 </div>

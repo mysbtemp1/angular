@@ -7,7 +7,7 @@ import { CrudComponent } from './components/crud/crud.component';
 const appRoutes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
-    { path: 'crud', component: CrudComponent }
+    { path: 'manage_images', component: CrudComponent }
   ];
 
 export const routing = RouterModule.forRoot(appRoutes);

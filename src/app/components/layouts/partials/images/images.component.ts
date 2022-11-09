@@ -32,7 +32,7 @@ export class ImagesComponent implements OnInit {
       });
   }
 
-  pushImage(text:string) {
-
+  getImageList() {
+    return this.images_array;
   }
 }
