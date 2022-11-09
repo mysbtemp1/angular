@@ -20,7 +20,14 @@ export class ImagesComponent implements OnInit {
     this.service.getImages()
       .subscribe(response => {
         for(const [index, data] of Object.entries(response)) {
-          this.images_array.push(new Image(data.path, data.description));
+          if (index == 'images') {
+            for(const [index, data2] of Object.entries(data)) {
+              this.images_array.push(new Image(data[index].path, data[index].description));
+            };
+          }
+          if (index == 'token') {
+            this.service.setToken(data);
+          }
         };
       });
   }

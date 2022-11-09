@@ -11,6 +11,7 @@ export class ServerService {
   
   private get_images_url = 'http://localhost:8000/api/images';
   private post_image_url = 'http://localhost:8000/api/image/save';
+  private _token = '';
 
   constructor(private http: HttpClient) { }
 
@@ -20,6 +21,20 @@ export class ServerService {
 
   saveImage(data: String){
     console.log('in post' + data);
-    return this.http.post(this.post_image_url, data);
+    // console.log(localStorage.getItem(''));
+    var headers = new Headers();
+    headers.append('X-CSRF-TOKEN', this._token);
+    // let options = new RequestOptions({ headers: headers, withCredentials: true });
+    return this.http.post(this.post_image_url, { headers: headers, withCredentials: true })
+      .subscribe(
+        response => {
+          // console.log(response);
+          
+        }
+      );
+  }
+
+  setToken(data: string) {
+    this._token = data;
   }
 }
