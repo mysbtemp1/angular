@@ -7,24 +7,24 @@
   </div>
 
   <div class="w3-container">
+
     <label>Path :</label>
-    <br/>
     <input [(ngModel)] = "new_image_path"
     type="text" class="form-control mb-2">
 
     <label>Description :</label>
-    <br/>
     <input [(ngModel)] = "new_image_description"
     type="text" class="form-control mb-2">
     
-    <button (click)="test()" type="button" class="btn btn-primary mt-2 mb-5">
+    <button (click)="saveImage()" type="button" class="btn btn-primary mt-2 mb-5">
       Add New Image</button>
 
     <ul class="list-group">
       <li *ngFor="let image of getImageList()"
         class="list-group-item d-flex justify-content-between align-items-center">
-        {{image.description}}
-        <span class="material-symbols-outlined" style="color: red;">delete</span>
+        {{image.description + ' - ' + image.id}}
+        <a class="material-symbols-outlined text-decoration-none btn btn-outline-danger btn-circle"
+          (click)="deleteImage(image.id)">delete</a>
       </li>
     </ul>
 

@@ -8,17 +8,16 @@ import { Image } from '../models/image.model';
   providedIn: 'root'
 })
 export class ServerService {
-  
-  private get_images_url = 'http://localhost:8000/api/images';
-  private post_image_url = 'http://localhost:8000/api/image/save';
 
-  private _token = '';
+  private url1 = 'http://localhost:8000/api/images';
+  private url2 = 'http://localhost:8000/api/image/save';
+  private url3 = 'http://localhost:8000/api/image/delete';
   images_array: Image[] = [];
 
   constructor(private http: HttpClient) { }
 
   fetchImages() {
-    this.http.get(this.get_images_url)
+    this.http.get(this.url1)
     .subscribe(response => {
 
       this.images_array = [];
@@ -26,11 +25,8 @@ export class ServerService {
       for(const [index, data] of Object.entries(response)) {
         if (index == 'images') {
           for(const [index, data2] of Object.entries(data)) {
-            this.images_array.push(new Image(data[index].path, data[index].description));
+            this.images_array.push(new Image(data[index].id, data[index].path, data[index].description));
           };
-        }
-        if (index == 'token') {
-          this._token = data;
         }
       };
     });
@@ -41,21 +37,16 @@ export class ServerService {
   }
 
   saveImage(path: string, description: string){
-    console.log('in post' + path);
-    // console.log(localStorage.getItem(''));
-    var headers = new Headers();
-    headers.append('X-CSRF-TOKEN', this._token);
-    // let options = new RequestOptions({ headers: headers, withCredentials: true });
-    return this.http.post(this.post_image_url, { path: path, description: description })
-      .subscribe(
-        response => {
-          // console.log(response);
-          
-        }
-      );
+    this.http.post(this.url2, { path: path, description: description })
+    .subscribe(response => {
+      this.fetchImages();
+    });
   }
 
-  setToken(data: string) {
-    this._token = data;
+  deleteImage(id: number) {
+    this.http.post<any>(this.url3, { id: id })
+    .subscribe(response => {
+      this.fetchImages();
+    });
   }
 }
