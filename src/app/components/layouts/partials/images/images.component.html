@@ -1,7 +1,7 @@
 
   <!-- Photo grid (modal) -->
   <div class="w3-row-padding">
-    <div class="w3-half" *ngFor="let image of images_array">
+    <div class="w3-half" *ngFor="let image of getImageList()">
       <img [src]="image.path" style="width:100%" onclick="onClick(this)" alt="{{image.description}}">
     </div>
   </div>

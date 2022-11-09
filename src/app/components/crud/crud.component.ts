@@ -29,4 +29,8 @@ export class CrudComponent implements OnInit {
     // this.image_list = this.img_comp.getImageList();
   }
 
+  getImageList() {
+    return this.service.getImages();
+  }
+
 }
