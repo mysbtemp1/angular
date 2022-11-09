@@ -2,7 +2,7 @@
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <!-- <h1 class="w3-jumbo"><b>Interior Design</b></h1> -->
-    <h1 class="w3-xxxlarge"><b>CRUD</b></h1>
+    <h1 class="w3-xxxlarge"><b>Manage Images</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
@@ -10,19 +10,22 @@
     <label>Path :</label>
     <br/>
     <input [(ngModel)] = "new_image_path"
-    type="text" class="form-control" style="margin-bottom: 25px;">
-    <br/>
+    type="text" class="form-control mb-2">
+
     <label>Description :</label>
     <br/>
     <input [(ngModel)] = "new_image_description"
-    type="text" class="form-control" style="margin-bottom: 25px;">
-    <br/>
-    <button (click)="test()" class="form-control" style="margin-bottom: 25px;">
+    type="text" class="form-control mb-2">
+    
+    <button (click)="test()" type="button" class="btn btn-primary mt-2 mb-5">
       Add New Image</button>
-    <br/>
 
-    <ul>
-      <li *ngFor="let image of getImageList()">{{image.description}}</li>
+    <ul class="list-group">
+      <li *ngFor="let image of getImageList()"
+        class="list-group-item d-flex justify-content-between align-items-center">
+        {{image.description}}
+        <span class="material-symbols-outlined" style="color: red;">delete</span>
+      </li>
     </ul>
 
 </div>
