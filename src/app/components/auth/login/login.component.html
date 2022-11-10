@@ -1,0 +1,22 @@
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="showcase">
+    <!-- <h1 class="w3-jumbo"><b>Interior Design</b></h1> -->
+    <h1 class="w3-xxxlarge"><b>Login</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+  </div>
+
+  <div class="w3-container">
+
+    <label>Username :</label>
+    <input [(ngModel)] = "username"
+    type="text" class="form-control mb-2">
+
+    <label>Password :</label>
+    <input [(ngModel)] = "password"
+    type="password" class="form-control mb-2">
+    
+    <button (click)="submit()" type="button" class="btn btn-primary mt-2 mb-5">
+      <span>Login</span>
+    </button>
+  </div>

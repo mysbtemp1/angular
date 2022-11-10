@@ -6,7 +6,10 @@
       <h3 class="w3-padding-64"><b>{{company_name}}</b></h3>
     </div>
     <div class="w3-bar-block">
-      <a routerLink="/home" (click)="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>  
+      <a routerLink="/login" class="w3-bar-item w3-button w3-hover-white"
+        *ngIf="!isLoggedIn()">Log In</a> 
+      <a routerLink="/home" (click)="w3_close()" class="w3-bar-item w3-button w3-hover-white"
+        *ngIf="isLoggedIn()">Home</a>  
       <a routerLink="/manage_images" (click)="w3_close()" class="w3-bar-item w3-button w3-hover-white"
         *ngIf="isLoggedIn()">Manage Images</a> 
       <a routerLink="/logout" (click)="logout()" class="w3-bar-item w3-button w3-hover-white"

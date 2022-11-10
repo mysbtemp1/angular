@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/layouts/header/header.component';
 import { ImagesComponent } from './components/partials/images/images.component';
 import { HomeComponent } from './components/home/home.component';
 import { CrudComponent } from './components/crud/crud.component';
+import { LoginComponent } from './components/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CrudComponent } from './components/crud/crud.component';
     ImagesComponent,
     HomeComponent,
     CrudComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

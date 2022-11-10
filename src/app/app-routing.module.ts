@@ -3,13 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 import { CrudComponent } from './components/crud/crud.component';
-import { AuthGuard } from './shared/auth.guard';
+import { AuthGuard } from './components/auth/auth.guard';
+import { LoginComponent } from './components/auth/login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'manage_images', component: CrudComponent, canActivate: [AuthGuard] },
-  { path: 'logout', redirectTo: 'home' },
+  { path: 'logout', redirectTo: 'login' },
 ];
 
 @NgModule({

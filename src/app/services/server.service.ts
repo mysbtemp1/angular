@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+
 import { Image } from '../models/image.model';
 
 @Injectable({
@@ -10,12 +10,18 @@ import { Image } from '../models/image.model';
 export class ServerService {
 
   private is_logged_in = true;
+
+  private login_url1 = 'http://localhost:8000/api/login';
+  private login_url2 = 'http://localhost:8000/api/logout';
+  private login_url3 = 'http://localhost:8000/api/login_check';
+
   private url1 = 'http://localhost:8000/api/images';
   private url2 = 'http://localhost:8000/api/image/save';
   private url3 = 'http://localhost:8000/api/image/delete';
+
   images_array: Image[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   fetchImages() {
     this.http.get(this.url1)
@@ -23,9 +29,9 @@ export class ServerService {
 
       this.images_array = [];
 
-      for(const [index, data] of Object.entries(response)) {
-        if (index == 'images') {
-          for(const [index, data2] of Object.entries(data)) {
+      for(const [key, data] of Object.entries(response)) {
+        if (key == 'images') {
+          for(const index in Object.entries(data)) {
             this.images_array.push(new Image(data[index].id, data[index].path, data[index].description));
           };
         }
@@ -62,7 +68,39 @@ export class ServerService {
     return this.is_logged_in;
   }
 
+  checkLogin() {
+    this.http.get(this.login_url3)
+    .subscribe(response => {
+      if (response > 0) {
+        this.is_logged_in = true;
+      } else {
+        this.is_logged_in = false;
+      }
+    });
+  }
+
+
+  login(username:string, password:string) {
+    this.http.post(this.login_url1, { username: username, password: password })
+    .subscribe(response => {
+      if (response > 0) {
+        this.is_logged_in = true;
+        this.router.navigate(['/home']);
+      } else {
+        this.is_logged_in = false;
+      }
+    });
+  }
+
   logout() {
-    this.is_logged_in = false;
+    this.http.post(this.login_url2, {})
+    .subscribe(response => {
+      if (response > 0) {
+        this.is_logged_in = true;
+        this.router.navigate(['/login']);
+      } else {
+        this.is_logged_in = false;
+      }
+    });
   }
 }
