@@ -6,11 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layouts/header/header.component';
-import { ImagesComponent } from './components/layouts/partials/images/images.component';
+import { ImagesComponent } from './components/partials/images/images.component';
 import { HomeComponent } from './components/home/home.component';
 import { CrudComponent } from './components/crud/crud.component';
-
-import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -29,7 +27,6 @@ import { routing } from './app.routing';
       headerName: 'X-CSRF-TOKEN',
     }),
     FormsModule,
-    routing
   ],
   providers: [],
   bootstrap: [AppComponent]

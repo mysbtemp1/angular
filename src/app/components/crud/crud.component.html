@@ -17,14 +17,20 @@
     type="text" class="form-control mb-2">
     
     <button (click)="saveImage()" type="button" class="btn btn-primary mt-2 mb-5">
-      Add New Image</button>
+      <span>Add New Image</span>
+    </button>
+    
 
     <ul class="list-group">
       <li *ngFor="let image of getImageList()"
         class="list-group-item d-flex justify-content-between align-items-center">
-        {{image.description + ' - ' + image.id}}
-        <a class="material-symbols-outlined text-decoration-none btn btn-outline-danger btn-circle"
-          (click)="deleteImage(image.id)">delete</a>
+        {{image.description}}
+        <div>
+          <a class="material-symbols-outlined text-decoration-none btn btn-outline-warning btn-circle mx-1"
+            (click)="editImage(image.id)">Edit</a>
+          <a class="material-symbols-outlined text-decoration-none btn btn-outline-danger btn-circle mx-1"
+            (click)="deleteImage(image.id)">delete</a>
+        </div>
       </li>
     </ul>
 

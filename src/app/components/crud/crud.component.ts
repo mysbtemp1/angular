@@ -17,6 +17,8 @@ export class CrudComponent implements OnInit {
 
   saveImage() {
     this.service.saveImage(this.new_image_path, this.new_image_description);
+    this.new_image_path = '';
+    this.new_image_description = '';
   }
 
   getImageList() {
@@ -24,8 +26,11 @@ export class CrudComponent implements OnInit {
   }
 
   deleteImage(id: number) {
-    console.log(id);
     this.service.deleteImage(id);
+  }
+
+  editImage(id: number) {
+    this.service.editImage(id);
   }
 
 }

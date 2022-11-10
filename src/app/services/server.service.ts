@@ -44,7 +44,14 @@ export class ServerService {
   }
 
   deleteImage(id: number) {
-    this.http.post<any>(this.url3, { id: id })
+    this.http.post(this.url3, { id: id })
+    .subscribe(response => {
+      this.fetchImages();
+    });
+  }
+
+  editImage(id: number) {
+    this.http.post(this.url3, { id: id })
     .subscribe(response => {
       this.fetchImages();
     });
