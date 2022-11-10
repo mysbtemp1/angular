@@ -9,6 +9,7 @@ import { Image } from '../models/image.model';
 })
 export class ServerService {
 
+  private is_logged_in = true;
   private url1 = 'http://localhost:8000/api/images';
   private url2 = 'http://localhost:8000/api/image/save';
   private url3 = 'http://localhost:8000/api/image/delete';
@@ -55,5 +56,13 @@ export class ServerService {
     .subscribe(response => {
       this.fetchImages();
     });
+  }
+
+  isLoggedIn() {
+    return this.is_logged_in;
+  }
+
+  logout() {
+    this.is_logged_in = false;
   }
 }

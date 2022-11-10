@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ServerService } from 'src/app/services/server.service'; 
+import { ServerService } from 'src/app/services/server.service';
+import { AuthGuard } from 'src/app/shared/auth.guard'; 
 
 @Component({
   selector: 'app-header',
@@ -23,6 +24,14 @@ export class HeaderComponent implements OnInit {
 
   w3_close() {
     this.toggleSidebar = 'd-none';
+  }
+
+  isLoggedIn() {
+    return this.service.isLoggedIn();
+  }
+
+  logout() {
+    this.service.logout();
   }
 
 }

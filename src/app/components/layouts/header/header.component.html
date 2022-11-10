@@ -7,7 +7,10 @@
     </div>
     <div class="w3-bar-block">
       <a routerLink="/home" (click)="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>  
-      <a routerLink="/manage_images" (click)="w3_close()" class="w3-bar-item w3-button w3-hover-white">Manage Images</a> 
+      <a routerLink="/manage_images" (click)="w3_close()" class="w3-bar-item w3-button w3-hover-white"
+        *ngIf="isLoggedIn()">Manage Images</a> 
+      <a routerLink="/logout" (click)="logout()" class="w3-bar-item w3-button w3-hover-white"
+        *ngIf="isLoggedIn()">Logout</a> 
     </div>
   </nav>
   

@@ -8,7 +8,8 @@ import { AuthGuard } from './shared/auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'manage_images', component: CrudComponent, canActivate: [AuthGuard] }
+  { path: 'manage_images', component: CrudComponent, canActivate: [AuthGuard] },
+  { path: 'logout', redirectTo: 'home' },
 ];
 
 @NgModule({
